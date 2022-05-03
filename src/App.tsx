@@ -4,6 +4,7 @@ import './App.css';
 import { Grid } from '@material-ui/core';
 import Navbar from './components/static/navbar/Navbar';
 import Footer from './components/static/footer/Footer';
+import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './paginas/login/Login';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/cadastrousuario" element={<CadastroUsuario />} />
           {/* <Route path="/cadastro" element={<CadastroUsuario />} />  */}
         </Routes>
       </div>
