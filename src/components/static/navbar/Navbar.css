@@ -1,6 +1,11 @@
-.cursor{
+.cursor h6{
     cursor: pointer;
     color: white;
+    padding: 10px;
+}
+
+.cursor h6:hover{
+    background-color: rgb(106, 143, 223);
 }
 
 .text-decoration-none{

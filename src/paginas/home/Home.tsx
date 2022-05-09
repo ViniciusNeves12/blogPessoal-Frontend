@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Box, Button , Grid , Typography } from '@material-ui/core';
+import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
+import useLocalStorage from 'react-use-localstorage';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 function Home(){
+
     return(
         <>
              <Grid container direction="row" justifyContent="center" alignItems="center" className="caixa">
@@ -21,6 +25,7 @@ function Home(){
                     <img src="https://i.imgur.com/H88yIo2.png" alt="gatin" width="400px" height="400px" />
                 </Grid>
                 <Grid xs={12} className="postagem">
+                    <TabPostagem />
                 </Grid>
             </Grid>
         </>
