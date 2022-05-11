@@ -52,6 +52,7 @@ function CadastroUsuario() {
         if(confirmarSenha ===  user.senha){
             cadastroUsuario(`usuarios/cadastrar`, user, setUserResult)
             alert('usuario cadastrado com sucesso')
+            history("/login")
 
         }else{
             alert('Dados inconsistentes. Favor verificar as informações de cadastro')
