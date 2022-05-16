@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Home() {
 
@@ -17,8 +18,16 @@ function Home() {
     
     useEffect(() => {
       if (token == "") {
-          alert("Você precisa estar logado")
-          history("/login")
+        toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        history("/login")
   
       }
   }, [token])
@@ -35,7 +44,7 @@ function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem />
                         </Box>
-                        <Link to="/posts">
+                        <Link to="/posts" className = 'botao'>
                             <Button variant="outlined" className='botao'>Ver Postagens</Button>
                         </Link>
                     </Box>

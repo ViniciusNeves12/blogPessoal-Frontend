@@ -1,57 +1,75 @@
 import React, { useEffect, useState } from 'react'
-import {Box, Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
+import { Box, Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
 import './DeletarTema.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { buscaId, deleteId } from '../../../services/Service';
 import Tema from '../../../models/Tema';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 function DeletarTema() {
   let history = useNavigate();
 
-    const token = useSelector<TokenState, TokenState["tokens"]>(
-        (state) => state.tokens
-    );
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
 
-    
-    const {id} = useParams<{id:string}>()
-    const [tema, setTema] = useState<Tema>()
 
-    useEffect(()=>{
-        if(token == ''){
-          history('/login')
-          alert('Você precisa estar logado')
-        }
-    }, [token])
+  const { id } = useParams<{ id: string }>()
+  const [tema, setTema] = useState<Tema>()
 
-    useEffect(()=>{
-        if(id !== undefined){
-            findById(id)
-        }
-    }, [id])
-
-    async function findById(id: string){
-        buscaId(`/temas/${id}`, setTema, {
-            headers: {
-                'Authorization': token
-            }
-        })
+  useEffect(() => {
+    if (token == '') {
+      history('/login')
+      toast.error('Você precisa estar logado', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+  }, [token])
 
-    function sim(){
-        history('/temas')
-        deleteId(`/temas/${id}`,{
-          headers:{
-              'Authorization': token 
-          }
-        })
+  useEffect(() => {
+    if (id !== undefined) {
+      findById(id)
     }
+  }, [id])
 
-    function nao(){
-        history('/temas')
-    }
-          
+  async function findById(id: string) {
+    buscaId(`/temas/${id}`, setTema, {
+      headers: {
+        'Authorization': token
+      }
+    })
+  }
+
+  function sim() {
+    history('/temas')
+    deleteId(`/temas/${id}`, {
+      headers: {
+        'Authorization': token
+      }
+    })
+    toast.success('Tema deletado com sucesso', {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+  function nao() {
+    history('/temas')
+  }
+
   return (
     <>
       <Box m={2}>

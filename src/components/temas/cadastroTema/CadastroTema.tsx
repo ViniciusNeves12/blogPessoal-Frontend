@@ -6,6 +6,7 @@ import { buscaId, post, put } from '../../../services/Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 function CadastroTema() {
@@ -24,7 +25,15 @@ function CadastroTema() {
     useEffect(()=>{
         if(token == ''){
           history('/login')
-          alert('Você precisa estar logado')
+          toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         }
     }, [token])
 
@@ -54,20 +63,68 @@ function CadastroTema() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault();
 
-        if(id !== undefined){
-            put(`/temas`, tema, setTema, {
-                headers:{
-                    'Authorization': token 
-                }
-            })
-            alert("Tema atualizado com sucesso")
-        }else{
-            post(`/temas`, tema, setTema, {
-                headers:{
-                    'Authorization': token 
-                }
-            })
-            alert("Tema cadastrado com sucesso")            
+        if (id !== undefined) {
+
+            try {
+                await put(`/temas`, tema, setTema, {
+                    headers: {
+                        'Authorization': token
+                    }
+                })
+
+                toast.success('Tema atualizado com sucesso', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+            } catch (error) {
+                console.log(`Error: ${error}`)
+                toast.error('Erro, por favor verifique a quantidade minima de caracteres', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+
+        } else {
+
+            try {
+                await post(`/temas`, tema, setTema, {
+                    headers: {
+                        'Authorization': token
+                    }
+                })
+                
+                toast.success('Tema cadastrado com sucesso', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                
+            } catch (error) {
+                console.log(`Error: ${error}`)
+                toast.error('Erro, por favor verifique a quantidade minima de caracteres', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });            }
         }
         back();
     }
