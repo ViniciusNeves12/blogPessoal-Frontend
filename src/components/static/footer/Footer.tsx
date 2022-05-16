@@ -5,7 +5,6 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import './Footer.css';
 import { TokenState } from "../../../store/tokens/tokensReducer";
-
 import { useSelector } from "react-redux";
 
 
