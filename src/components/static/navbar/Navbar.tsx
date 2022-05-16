@@ -21,11 +21,11 @@ function Navbar() {
         history('/login')
     }
 
-    var navbarCompnent;
+    var navbarComponent;
 
     if (token !== '') {
 
-        navbarCompnent = <AppBar position="static">
+        navbarComponent = <AppBar position="static">
             <Toolbar variant="dense">
                 <Box className="cursor" >
                     <Typography variant="h5" color="inherit">
@@ -76,7 +76,7 @@ function Navbar() {
     return (
         <>
             {
-                navbarCompnent
+                navbarComponent
             }
         </>
     )
