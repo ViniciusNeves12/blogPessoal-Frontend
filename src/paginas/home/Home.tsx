@@ -6,6 +6,7 @@ import './Home.css';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -34,7 +35,9 @@ function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem />
                         </Box>
-                        <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        <Link to="/posts">
+                            <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6} >

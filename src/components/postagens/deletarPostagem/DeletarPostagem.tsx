@@ -14,6 +14,7 @@ function DeletarPostagem() {
     
     const {id} = useParams<{id:string}>()
     const [post, setPosts] = useState<Postagem>()
+    
     const token = useSelector<TokenState, TokenState["tokens"]>(
       (state) => state.tokens
     );
